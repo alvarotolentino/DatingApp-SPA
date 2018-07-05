@@ -7,13 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto" *ngIf="loggedIn()">
             <li class="nav-item">
-                <a class="nav-link" href="#">Matches</a>
+                <a class="nav-link" [routerLink]="['/members']">Matches</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Lists</a>
+                <a class="nav-link" [routerLink]="['/lists']">Lists</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Messages</a>
+                <a class="nav-link" [routerLink]="['/messages']">Messages</a>
             </li>
         </ul>
 
@@ -23,22 +23,21 @@
                 [(ngModel)]="model.password">
             <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid">Login</button>
         </form>
-        <div *ngIf="loggedIn()" class="btn-group" dropdown>
-            <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+        <div *ngIf="loggedIn()" class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
                 Welcome {{authService.decodedToken?.unique_name | titlecase}}
                 <span class="caret"></span>
-            </button>
-            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-                <li role="menuitem">
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-user"></i> Edit Profile</a>
-                </li>
-                <li class="divider dropdown-divider"></li>
-                <li role="menuitem">
-                    <a (click)="logout()" href="#" class="dropdown-item">
-                        <i class="fa fa-sign-out"></i> Logout</a>
-                </li>
-            </ul>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">
+                    <i class="fa fa-user"></i> Edit Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" (click)="logout()">
+                    <i class="fa fa-sign-out"></i> Logout</a>
+            </div>
+
+
         </div>
     </div>
 </nav>
