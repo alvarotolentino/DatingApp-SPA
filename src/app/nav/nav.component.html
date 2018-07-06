@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Dating App</a>
+    <a class="navbar-brand" [routerLink]="['/home']">Dating App</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,6 +17,7 @@
             </li>
         </ul>
 
+
         <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline ml-auto" (ngSubmit)="login()">
             <input class="form-control mr-sm-2" type="text" placeholder="Username" aria-label="Username" required name="username" [(ngModel)]="model.username">
             <input class="form-control mr-sm-2" type="password" placeholder="Password" aria-label="Password" required name="password"
@@ -24,20 +25,17 @@
             <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid">Login</button>
         </form>
         <div *ngIf="loggedIn()" class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+            <a class="btn btn-success dropdown-toggle" href="#" id="dropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 Welcome {{authService.decodedToken?.unique_name | titlecase}}
-                <span class="caret"></span>
             </a>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a class="dropdown-item" href="#">
                     <i class="fa fa-user"></i> Edit Profile</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" (click)="logout()">
+                <a (click)="logout()" class="dropdown-item" [routerLink]="['/home']">
                     <i class="fa fa-sign-out"></i> Logout</a>
             </div>
-
-
         </div>
     </div>
 </nav>
